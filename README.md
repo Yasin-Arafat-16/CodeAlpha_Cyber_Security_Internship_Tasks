@@ -1,17 +1,29 @@
-# Network Intrusion Detection System (NIDS) - CodeAlpha
+# CodeAlpha Cyber Security Internship Tasks
 
-This project is a Python-based Network Intrusion Detection System (NIDS) developed as part of my Cyber Security internship at CodeAlpha.
+This repository contains the completed tasks for my Cyber Security internship at **CodeAlpha**. These projects demonstrate hands-on experience in network traffic analysis and threat detection.
 
-## Features
-- **SYN Flood Detection:** Detects excessive SYN packets to prevent DoS attacks.
-- **Port Scanning Detection:** Identifies IPs scanning multiple ports within a short time.
-- **Malicious Payload Detection:** Monitors for suspicious keywords like 'admin', 'sql', 'passwd' in network traffic.
-- **Real-time Logging:** Saves all alerts with severity levels in a log file.
+## 📋 Projects Overview
 
-## Technologies Used
-- Python 3.x
-- Scapy (Network Packet Manipulation)
+### 1. Basic Network Sniffer (Task 01)
+A Python-based tool developed to capture and analyze network traffic.
+- **Functionality:** Identifies protocols like TCP, UDP, and ICMP.
+- **Credential Detection:** Monitors for unencrypted login data (username/password) in HTTP traffic.
+- **File Name:** `Cybersecurity Internship Task-01.py`.
 
-## How to Run
-1. Install Scapy: `pip install scapy`
-2. Run as Administrator: `python Final_NIDS_Project.py`
+### 2. Network Intrusion Detection System - NIDS (Task 04)
+An advanced monitoring system designed to detect and alert against potential network threats.
+- **Detection Capabilities:**
+    - **SYN Flood:** Detects potential Denial of Service (DoS) attempts.
+    - **Port Scanning:** Identifies suspicious scanning of multiple ports.
+    - **Malicious Payload:** Flags packets containing sensitive keywords like 'admin' or 'sql'.
+- **Response Mechanism:** Generates real-time alerts and maintains a log file (`nids_alerts.log`) for incident analysis.
+- **File Name:** `Cybersecurity Internship Task-04.py`.
+
+---
+
+## 🛠️ Setup & Requirements
+
+### Prerequisites
+Make sure you have Python 3.x installed along with the `scapy` library:
+```bash
+pip install scapy
