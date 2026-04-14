@@ -1,13 +1,11 @@
 from scapy.all import sniff, IP, TCP, UDP, ICMP, Raw
 from datetime import datetime
 
-# ১. টেবিলের হেডার প্রিন্ট করা
 def print_header():
     print("-" * 125)
     print(f"{'Time':<10} | {'Protocol':<8} | {'Source IP':<18} | {'Destination IP':<18} | {'Port':<15} | {'Payload Summary'}")
     print("-" * 125)
 
-# ২. ক্রেডেনশিয়াল ফিল্টার করার লজিক
 def extract_credentials(payload):
     decoded_payload = str(payload).lower()
     patterns = ['user', 'uid', 'username', 'email', 'pass', 'pw', 'pwd']
@@ -19,13 +17,11 @@ def extract_credentials(payload):
             return " | ".join(found)
     return None
 
-# ৩. মূল অ্যানালাইসিস ফাংশন (TCP, UDP ও অন্যান্য প্রোটোকলসহ)
 def analyze_packet(packet):
     if IP in packet:
         timestamp = datetime.now().strftime('%H:%M:%S')
         ip_layer = packet[IP]
         
-        # প্রোটোকল ও পোর্ট শনাক্তকরণ
         protocol = "Other"
         ports = "N/A"
         
@@ -45,7 +41,7 @@ def analyze_packet(packet):
             creds = extract_credentials(raw_payload)
             
             if creds:
-                # হাইলাইট করা ক্রেডেনশিয়াল আউটপুট
+            
                 print(f"\n{'!'*125}")
                 print(f"[!] {timestamp} - CRITICAL: LOGIN DATA DETECTED!")
                 print(f"[!] CREDENTIALS: {creds}")
@@ -54,7 +50,7 @@ def analyze_packet(packet):
             else:
                 payload_summary = str(raw_payload)[:40].replace('\n', '') + "..."
         
-        # টেবিল আকারে রো প্রিন্ট করা
+       
         print(f"{timestamp:<10} | {protocol:<8} | {ip_layer.src:<18} | {ip_layer.dst:<18} | {ports:<15} | {payload_summary}")
 
 def start_sniffing():
@@ -62,7 +58,7 @@ def start_sniffing():
     print_header()
     
     try:
-        # ফিল্টার সরিয়ে দেওয়া হয়েছে যাতে সব প্রোটোকল দেখা যায়
+      
         sniff(prn=analyze_packet, store=False)
     except KeyboardInterrupt:
         print("\n" + "-" * 125)
